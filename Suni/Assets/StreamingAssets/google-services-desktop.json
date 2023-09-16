@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "727541503546",
+    "firebase_url": "https://suni-taller7-default-rtdb.firebaseio.com",
+    "project_id": "suni-taller7",
+    "storage_bucket": "suni-taller7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727541503546:android:042576f8da303ab4424703",
+        "android_client_info": {
+          "package_name": "com.zenrisedynamics.suni"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW6EMVrbKFsVf0aT9mqejI77aonjFKOOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
