@@ -6,11 +6,17 @@ using UnityEngine.UI;
 
 public class AnimManager : MonoBehaviour
 {
+    public float animShortSpan, animLongSpan;
     private TMP_Text countLabel;
     private float time;
-    public float animSpan;
+    private float animSpan;
     private void Start()
     {
+        if (PlayerPrefs.GetInt("NewUser") == 1)
+            animSpan = animLongSpan;
+        else
+            animSpan = animShortSpan;
+
         countLabel = GameObject.Find("Label_Count").GetComponent<TMP_Text>();
         time = animSpan + 1f;
     }
@@ -24,8 +30,13 @@ public class AnimManager : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt("NewUser", 1);
-            SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
+            if (PlayerPrefs.GetInt("NewUser") == 1)
+                SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
+            else
+            {
+                PlayerPrefs.SetInt("NewUser", 1);
+                SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
+            }
         }
     }
 

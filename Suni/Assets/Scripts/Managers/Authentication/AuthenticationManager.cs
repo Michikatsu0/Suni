@@ -2,18 +2,24 @@ using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class AuthenticationManager : MonoBehaviour
 {
+    [SerializeField] private GameObject[] signUpErrorList;
+    [SerializeField] private GameObject[] loginErrorList;
 
     private Button loginButton;
     private Button signUpButton;
+    private Button returnButton;
 
     private Coroutine loginCoroutine;
     private Coroutine signOutCoroutine;
@@ -23,25 +29,38 @@ public class AuthenticationManager : MonoBehaviour
 
     private void Awake()
     {
+        DeactivateErrors();
+
         loginButton = GameObject.Find("Button_Login").GetComponent<Button>();
         signUpButton = GameObject.Find("Button_SignUp").GetComponent<Button>();
+        returnButton = GameObject.Find("Button_Return").GetComponent<Button>();
+        signUpButton.gameObject.SetActive(false);
+        returnButton.gameObject.SetActive(false);
     }
 
     void Start()
     {
-
         loginButton.onClick.AddListener(HandleLoginButtonClicked);
         signUpButton.onClick.AddListener(HandleRegisterButtonClicked);
         database = FirebaseDatabase.DefaultInstance.RootReference;
     }
+
+    private void DeactivateErrors()
+    {
+        foreach (var item in loginErrorList){
+            item.gameObject.SetActive(false);
+        }
+        foreach (var item in signUpErrorList){
+            item.gameObject.SetActive(false);
+        }
+    }
+
     private void HandleLoginButtonClicked()
     {
         string email = GameObject.Find("InputField_Email").GetComponent<TMP_InputField>().text;
         string password = GameObject.Find("InputField_Password").GetComponent<TMP_InputField>().text;
-        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
 
         loginCoroutine = StartCoroutine(LoginUser(email, password));
-        
     }
 
     private void GetUsername(FirebaseAuth auth)
@@ -73,8 +92,28 @@ public class AuthenticationManager : MonoBehaviour
             Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
         else if (registerTask.IsFaulted)
         {
+            Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + registerTask.Exception.Message);
 
-            Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + registerTask.Exception);
+            if (registerTask.Exception.Message == "One or more errors occurred. (The email address is badly formatted.)")
+            {
+                DeactivateErrors();
+                loginErrorList[1].gameObject.SetActive(true);
+            }
+            else if (registerTask.Exception.Message == "One or more errors occurred. (An email address must be provided.)")
+            {
+                DeactivateErrors();
+                loginErrorList[2].gameObject.SetActive(true);
+            }
+            else if (registerTask.Exception.Message == "One or more errors occurred. (A password must be provided.)")
+            {
+                DeactivateErrors();
+                loginErrorList[3].gameObject.SetActive(true);
+            }
+            else
+            {
+                DeactivateErrors();
+                loginErrorList[0].gameObject.SetActive(true);
+            }
         }
         else
         {
@@ -107,21 +146,81 @@ public class AuthenticationManager : MonoBehaviour
             Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
         else if (registerTask.IsFaulted)
         {
+            Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + registerTask.Exception.Message);
 
-            Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + registerTask.Exception);
+            if (registerTask.Exception.Message == "One or more errors occurred. (The email address is already in use by another account.)")
+            {
+                DeactivateErrors();
+                signUpErrorList[1].gameObject.SetActive(true);
+            }
+            else if (registerTask.Exception.Message == "One or more errors occurred. (The email address is badly formatted.)")
+            {
+                DeactivateErrors();
+                loginErrorList[2].gameObject.SetActive(true);
+            }
+            else if (registerTask.Exception.Message == "One or more errors occurred. (An email address must be provided.)")
+            {
+                DeactivateErrors();
+                signUpErrorList[3].gameObject.SetActive(true);
+            }
+            else if (registerTask.Exception.Message == "One or more errors occurred. (The given password is invalid.)")
+            {
+                DeactivateErrors();
+                signUpErrorList[4].gameObject.SetActive(true);
+            }
+            else if (registerTask.Exception.Message == "One or more errors occurred. (A password must be provided.)")
+            {
+                DeactivateErrors();
+                signUpErrorList[5].gameObject.SetActive(true);
+            }
         }
         else
         {
-            Firebase.Auth.AuthResult result = registerTask.Result;
-            Debug.LogFormat(
-                "Firebase user created successfully: {0} ({1}:{2})",
-                username,
-                result.User.Email,
-                result.User.UserId);
+            AuthResult result = registerTask.Result;
 
-            PlayerPrefs.SetString("UserID", result.User.UserId);
-            SceneManagement.Instance.ChangeScene((int)AppScene.REGISTER);
-            database.Child("users").Child(result.User.UserId).Child("username").SetValueAsync(username);
+            if (ValidUsername())
+            {
+                Debug.LogFormat(
+                        "Firebase user created successfully: {0} ({1}:{2})",
+                        username,
+                        result.User.Email,
+                        result.User.UserId);
+
+                PlayerPrefs.SetString("UserID", result.User.UserId);
+                database.Child("users").Child(result.User.UserId).Child("username").SetValueAsync(username);
+                database.Child("users").Child(result.User.UserId).Child("score").SetValueAsync(0);
+
+                SceneManagement.Instance.ChangeScene((int)AppScene.REGISTER);
+            }
+            else
+            {
+                FirebaseUser user = auth.CurrentUser;
+                user.DeleteAsync();
+                if (registerTask.IsCanceled)
+                    Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
+                else if (registerTask.IsFaulted)
+                    Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + registerTask.Exception.Message);
+                else
+                    Debug.Log("User deleted successfully.");
+            }
         }
+    }
+
+    private bool ValidUsername()
+    {
+        if (String.IsNullOrEmpty(username))
+        {
+            DeactivateErrors();
+            signUpErrorList[6].gameObject.SetActive(true);
+            return false;
+        }
+        if (String.IsNullOrWhiteSpace(username))
+        {
+            DeactivateErrors();
+            signUpErrorList[6].gameObject.SetActive(true);
+            return false;
+        }
+        else 
+            return true;
     }
 }
