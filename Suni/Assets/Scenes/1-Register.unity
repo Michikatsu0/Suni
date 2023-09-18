@@ -508,7 +508,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2243,6 +2243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 641551050}
+  - component: {fileID: 641551051}
   m_Layer: 0
   m_Name: RegisterManager
   m_TagString: Untagged
@@ -2265,6 +2266,20 @@ Transform:
   m_Father: {fileID: 1811063467}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &641551051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641551049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a482442ff8f14d4b808d6e9db8ce867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiElemetsList:
+  - {fileID: 168212037}
 --- !u!1 &698469757
 GameObject:
   m_ObjectHideFlags: 0

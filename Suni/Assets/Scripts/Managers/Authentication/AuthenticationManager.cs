@@ -178,10 +178,10 @@ public class AuthenticationManager : MonoBehaviour
         {
             AuthResult result = registerTask.Result;
 
-            if (ValidUsername())
+            if (ValidUsername(username))
             {
                 Debug.LogFormat(
-                        "Firebase user created successfully: {0} ({1}:{2})",
+                        "Firebase user created successfully: {0} ({1} : {2})",
                         username,
                         result.User.Email,
                         result.User.UserId);
@@ -207,8 +207,9 @@ public class AuthenticationManager : MonoBehaviour
         }
     }
 
-    private bool ValidUsername()
+    private bool ValidUsername(string username)
     {
+        this.username = username;
         if (String.IsNullOrEmpty(username))
         {
             DeactivateErrors();

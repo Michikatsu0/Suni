@@ -10,7 +10,7 @@ public class AnimManager : MonoBehaviour
     private TMP_Text countLabel;
     private float time;
     private float animSpan;
-    private void Start()
+    private void Awake()
     {
         if (PlayerPrefs.GetInt("NewUser") == 1)
             animSpan = animLongSpan;
