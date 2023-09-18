@@ -11,10 +11,4 @@ public class RegisterManager : MonoBehaviour
     {
         uiElemetsList[0].SetActive(false);    
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
