@@ -43,6 +43,13 @@ public class AuthenticationManager : MonoBehaviour
         loginButton.onClick.AddListener(HandleLoginButtonClicked);
         signUpButton.onClick.AddListener(HandleRegisterButtonClicked);
         database = FirebaseDatabase.DefaultInstance.RootReference;
+        FirebaseAuth.DefaultInstance.StateChanged += HandleAuthStateChange;
+    }
+
+    private void HandleAuthStateChange(object sender, EventArgs e)
+    {
+        if (FirebaseAuth.DefaultInstance.CurrentUser != null)
+            SceneManager.LoadScene((int)AppScene.HOME);
     }
 
     private void DeactivateErrors()
@@ -119,7 +126,6 @@ public class AuthenticationManager : MonoBehaviour
         {
             AuthResult result = registerTask.Result;
 
-            PlayerPrefs.SetString("UserID", result.User.UserId);
             GetUsername(auth);
             SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
         }

@@ -1,7 +1,9 @@
+using Firebase.Auth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoginManager : MonoBehaviour
 {
@@ -23,11 +25,8 @@ public class LoginManager : MonoBehaviour
         else
         {
             newUser = PlayerPrefs.GetInt("NewUser");
-            currentUserID = PlayerPrefs.GetString("UserID");
             if (newUser == 0)
-                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)AppScene.ANIM);
-            else if (!String.IsNullOrEmpty(currentUserID))
-                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)AppScene.HOME);
+                SceneManager.LoadSceneAsync((int)AppScene.ANIM);
         }
 
     }
