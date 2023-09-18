@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum AppScene { LOGIN, REGISTER, HOME, MEDITATION, ANIM }
+public enum AppScene { LOGIN, REGISTER, HOME, MEDITATION, PUZZLES, GARDEN, CLOSET,  ANIM }
 
 public class SceneManagement : MonoBehaviour
 {
