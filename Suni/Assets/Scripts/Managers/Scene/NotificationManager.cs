@@ -70,7 +70,7 @@ public class NotificationManager : MonoBehaviour
         intent.Call<AndroidJavaObject>("setAction", "com.unity3d.player.UnityBroadcastReceiver.ACTION_NOTIFICATION");
         intent.Call<AndroidJavaObject>("setFlags", 0x00008000);
 
-        AndroidJavaObject contentIntent = pendingIntent.CallStatic<AndroidJavaObject>("getActivity", currentActivity, 0, intent.Call<AndroidJavaObject>("addFlags", 0x8000), 0x00000004); // PendingIntent.FLAG_UPDATE_CURRENT
+        AndroidJavaObject contentIntent = pendingIntent.CallStatic<AndroidJavaObject>("getActivity", currentActivity, 0, intent.Call<AndroidJavaObject>("addFlags", 0x8000), 0x00000004);
 
         AndroidJavaObject builder = new AndroidJavaObject("android.app.Notification$Builder", currentActivity)
 
