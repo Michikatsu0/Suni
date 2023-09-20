@@ -47,7 +47,8 @@ public class AuthenticationManager : MonoBehaviour
             SceneManager.LoadScene((int)AppScene.HOME);
     }
 
-    private void DeactivateErrors()
+
+    public void DeactivateErrors()
     {
         foreach (var item in loginErrorList){
             item.gameObject.SetActive(false);
