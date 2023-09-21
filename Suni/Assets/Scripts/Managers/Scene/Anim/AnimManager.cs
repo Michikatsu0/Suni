@@ -6,20 +6,19 @@ using UnityEngine.UI;
 
 public class AnimManager : MonoBehaviour
 {
-    public float animShortSpan, animLongSpan;
+    [SerializeField] private float animShortSpan, animLongSpan;
+    [SerializeField] private GameObject[] uiElemetsList;
     private TMP_Text countLabel;
-    private float time;
-    private float animSpan;
+    private float time, animSpan;
+
     private void Awake()
     {
-        if (PlayerPrefs.GetInt("NewUser") == 1)
-            animSpan = animLongSpan;
-        else
-            animSpan = animShortSpan;
+        GetNextScene();
 
         countLabel = GameObject.Find("Label_Count").GetComponent<TMP_Text>();
         time = animSpan + 1f;
     }
+
     private void Update()
     {
         time -= Time.deltaTime;
@@ -40,9 +39,32 @@ public class AnimManager : MonoBehaviour
         }
     }
 
+    private void GetNextScene()
+    {
+        if (PlayerPrefs.GetInt("NewUser") == 1)
+        {
+            animSpan = animLongSpan;
+            uiElemetsList[0].GetComponent<Button>().onClick.AddListener(HomeLoader);
+        }
+        else
+        {
+            animSpan = animShortSpan;
+            uiElemetsList[0].GetComponent<Button>().onClick.AddListener(LoginLoader);
+        }
+    }
+
+    private void HomeLoader()
+    {
+        SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
+    }
+
+    private void LoginLoader()
+    {
+        SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
+    }
+
     public void SkipAnimation()
     {
         PlayerPrefs.SetInt("NewUser", 1);
-        SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
     }
 }

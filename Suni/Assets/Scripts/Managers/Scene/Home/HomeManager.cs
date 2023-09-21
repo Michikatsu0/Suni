@@ -1,7 +1,9 @@
+using Firebase.Auth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HomeManager : MonoBehaviour
 {
@@ -13,9 +15,9 @@ public class HomeManager : MonoBehaviour
         uiElementList[0].SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SignOut()
     {
-        
+        FirebaseAuth.DefaultInstance.SignOut();
+        SceneManager.LoadScene((int)AppScene.LOGIN);
     }
 }
