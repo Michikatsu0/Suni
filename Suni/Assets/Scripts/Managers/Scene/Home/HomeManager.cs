@@ -7,12 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class HomeManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] uiElementList;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        uiElementList[0].SetActive(false);
+        UIElementsManager.Instance.DisableUI();
     }
 
     public void SignOut()
