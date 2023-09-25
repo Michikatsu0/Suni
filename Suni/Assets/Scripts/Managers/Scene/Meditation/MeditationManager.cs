@@ -5,28 +5,30 @@ using UnityEngine.Video;
 public class MeditationManager : MonoBehaviour
 {
     public VideoPlayer videoPlayer; 
-    public GameObject startButton; 
-    public GameObject secondButton; 
+    private Button startButton;
+    private Button exitButton;
 
+    private void Awake()
+    {
+        startButton = GameObject.Find("Button_Start").GetComponent<Button>();
+        exitButton = GameObject.Find("Button_Exit").GetComponent<Button>();
+    }
     public void Start()
     {
-        secondButton.SetActive(false);
-
-        Button startButtonComponent = startButton.GetComponent<Button>();
-        startButtonComponent.onClick.AddListener(PlayVideo);
-
+        UIElementsManager.Instance.DisableUI();
+        exitButton.gameObject.SetActive(false);
+        startButton.onClick.AddListener(PlayVideo);
         videoPlayer.loopPointReached += EndReached;
     }
 
     public void PlayVideo()
     {
         videoPlayer.Play();
-
-        startButton.SetActive(false);
+        startButton.gameObject.SetActive(false);
     }
 
     public void EndReached(VideoPlayer vp)
     {
-        secondButton.SetActive(true);
+        exitButton.gameObject.SetActive(true);
     }
 }
