@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class AnimManager : MonoBehaviour
 {
     [SerializeField] private float animShortSpan, animLongSpan;
+    [SerializeField] private VideoPlayer[] videoPlayer;
     [SerializeField] private GameObject[] uiElemetsList;
     private TMP_Text countLabel;
     private float time, animSpan;
@@ -21,21 +23,13 @@ public class AnimManager : MonoBehaviour
 
     private void Update()
     {
-        time -= Time.deltaTime;
-        if (time >= 0.0f)
-        {
-            var a = (int)time;
-            countLabel.text = a.ToString();
-        }
+
+        if (PlayerPrefs.GetInt("NewUser") == 1)
+            SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
         else
         {
-            if (PlayerPrefs.GetInt("NewUser") == 1)
-                SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
-            else
-            {
-                PlayerPrefs.SetInt("NewUser", 1);
-                SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
-            }
+            PlayerPrefs.SetInt("NewUser", 1);
+            SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
         }
     }
 

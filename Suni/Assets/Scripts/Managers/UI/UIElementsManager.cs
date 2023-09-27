@@ -1,6 +1,8 @@
+using Firebase.Auth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIElementsManager : MonoBehaviour
 {
@@ -17,5 +19,11 @@ public class UIElementsManager : MonoBehaviour
         foreach (var element in uIElementsList) {
             element.SetActive(false);
         }
+    }
+
+    public void SignOut()
+    {
+        FirebaseAuth.DefaultInstance.SignOut();
+        SceneManager.LoadScene((int)AppScene.LOGIN);
     }
 }

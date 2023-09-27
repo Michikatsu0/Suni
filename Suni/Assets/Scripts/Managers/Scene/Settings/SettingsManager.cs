@@ -15,7 +15,7 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
-
+        UIElementsManager.Instance.DisableUI();
         // Asigna la primera textura a todas las RawImage al inicio.
         foreach (RawImage rawImage in rawImages)
         {

@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class RegisterManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] uiElemetsList;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        uiElemetsList[0].SetActive(false);    
+        UIElementsManager.Instance.DisableUI();
     }
 }
