@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Video
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Video
+    uniqueID: 2200520935
+    locked: 0
+  - name: UI
+    uniqueID: 922708421
     locked: 0
