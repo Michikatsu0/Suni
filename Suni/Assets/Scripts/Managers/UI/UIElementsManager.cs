@@ -21,9 +21,4 @@ public class UIElementsManager : MonoBehaviour
         }
     }
 
-    public void SignOut()
-    {
-        FirebaseAuth.DefaultInstance.SignOut();
-        SceneManager.LoadScene((int)AppScene.LOGIN);
-    }
 }

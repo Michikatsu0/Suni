@@ -135,6 +135,7 @@ public class AuthenticationManager : MonoBehaviour
 
             GetUsername(auth);
             SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
+            PlayerPrefs.SetInt("Menu", 0);
         }
 
     }
@@ -171,6 +172,8 @@ public class AuthenticationManager : MonoBehaviour
     {
         var auth = FirebaseAuth.DefaultInstance;
         var registerTask = auth.CreateUserWithEmailAndPasswordAsync(email, password);
+
+        if (!ValidUsername(username)) yield return null;
 
         yield return new WaitUntil(() => registerTask.IsCompleted);
 
@@ -209,33 +212,18 @@ public class AuthenticationManager : MonoBehaviour
         else
         {
             AuthResult result = registerTask.Result;
+            Debug.LogFormat(
+                    "Firebase user created successfully: {0} ({1} : {2})",
+                    username,
+                    result.User.Email,
+                    result.User.UserId);
 
-            if (ValidUsername(username))
-            {
-                Debug.LogFormat(
-                        "Firebase user created successfully: {0} ({1} : {2})",
-                        username,
-                        result.User.Email,
-                        result.User.UserId);
+            PlayerPrefs.SetString("UserID", result.User.UserId);
+            database.Child("users").Child(result.User.UserId).Child("username").SetValueAsync(username);
+            database.Child("users").Child(result.User.UserId).Child("level").SetValueAsync(1);
+            database.Child("users").Child(result.User.UserId).Child("coins").SetValueAsync(0);
 
-                PlayerPrefs.SetString("UserID", result.User.UserId);
-                database.Child("users").Child(result.User.UserId).Child("username").SetValueAsync(username);
-                database.Child("users").Child(result.User.UserId).Child("level").SetValueAsync(1);
-                database.Child("users").Child(result.User.UserId).Child("coins").SetValueAsync(0);
-
-                SceneManagement.Instance.ChangeScene((int)AppScene.REGISTER);
-            }
-            else
-            {
-                FirebaseUser user = auth.CurrentUser;
-                user.DeleteAsync();
-                if (registerTask.IsCanceled)
-                    Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
-                else if (registerTask.IsFaulted)
-                    Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + registerTask.Exception.Message);
-                else
-                    Debug.Log("User deleted successfully.");
-            }
+            SceneManagement.Instance.ChangeScene((int)AppScene.REGISTER);
         }
     }
 
@@ -261,17 +249,11 @@ public class AuthenticationManager : MonoBehaviour
 
     public void DisableUIErrors()
     {
-        foreach (var item in loginErrorList)
-        {
+        foreach (var item in loginErrorList)        
             item.gameObject.SetActive(false);
-        }
-        foreach (var item in signUpErrorList)
-        {
+        foreach (var item in signUpErrorList)        
+            item.gameObject.SetActive(false);        
+        foreach (var item in restoreErrorList)        
             item.gameObject.SetActive(false);
-        }
-        foreach (var item in restoreErrorList)
-        {
-            item.gameObject.SetActive(false);
-        }
     }
 }

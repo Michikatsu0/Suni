@@ -7,7 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class HomeManager : MonoBehaviour
 {
-
+    private void Awake()
+    {
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
