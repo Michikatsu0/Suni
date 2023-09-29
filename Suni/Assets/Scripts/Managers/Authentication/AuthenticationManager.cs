@@ -222,6 +222,8 @@ public class AuthenticationManager : MonoBehaviour
                 database.Child("users").Child(result.User.UserId).Child("username").SetValueAsync(username);
                 database.Child("users").Child(result.User.UserId).Child("level").SetValueAsync(1);
                 database.Child("users").Child(result.User.UserId).Child("coins").SetValueAsync(0);
+                database.Child("users").Child(result.User.UserId).Child("maxExperience").SetValueAsync(1000);
+                database.Child("users").Child(result.User.UserId).Child("currentExperience").SetValueAsync(0);
 
                 SceneManagement.Instance.ChangeScene((int)AppScene.REGISTER);
             }
