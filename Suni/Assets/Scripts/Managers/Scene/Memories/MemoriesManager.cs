@@ -10,7 +10,13 @@ public class MemoriesManager : MonoBehaviour
 {
     [SerializeField] List<VideoPlayer> videosPlayer = new List<VideoPlayer>();
     [SerializeField] List<GameObject> uIElements = new List<GameObject>();
-    [SerializeField] private Image panel;
+    
+    private Image panelAlpha;
+    
+    private void Awake()
+    {
+        panelAlpha = GameObject.Find("Panel").GetComponent<Image>();
+    }
 
     public void PlayVideo(int anim)
     {
@@ -20,7 +26,7 @@ public class MemoriesManager : MonoBehaviour
         videosPlayer[anim].Play();
 
         var color = new Color(1f, 1f, 1f, 0f);
-        panel.color = color;
+        panelAlpha.color = color;
         return ;
     }
 
@@ -28,13 +34,12 @@ public class MemoriesManager : MonoBehaviour
     {
         foreach (var g in uIElements)
             g.SetActive(enable);
-        
     }
 
     private void EndReached(VideoPlayer source)
     {
         var color = new Color(1f, 1f, 1f, 1f);
-        panel.color = color;
+        panelAlpha.color = color;
         source.gameObject.SetActive(false);
         EnableUI(true);
     }

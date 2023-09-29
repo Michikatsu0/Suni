@@ -27,6 +27,7 @@ public class MeditationManager : MonoBehaviour
         panelAlpha.color = color;
         videoPlayer.Play();
         videoButtons[0].gameObject.SetActive(false);
+        videoButtons[2].gameObject.SetActive(false);
     }
 
     public void EndReached(VideoPlayer vp)
