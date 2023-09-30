@@ -143,7 +143,8 @@ public class AuthenticationManager : MonoBehaviour
     {
         FirebaseDatabase.DefaultInstance
         .GetReference("users/" + auth.CurrentUser.UserId + "/username")
-        .GetValueAsync().ContinueWithOnMainThread(task => {
+        .GetValueAsync().ContinueWithOnMainThread(task =>
+        {
             if (task.IsFaulted)
                 Debug.Log(task.Exception);
             else if (task.IsCompleted)
@@ -163,6 +164,7 @@ public class AuthenticationManager : MonoBehaviour
         string email = GameObject.Find("InputField_Email").GetComponent<TMP_InputField>().text;
         string username = GameObject.Find("InputField_Username").GetComponent<TMP_InputField>().text;
         string password = GameObject.Find("InputField_Password").GetComponent<TMP_InputField>().text;
+        if (!ValidUsername(username)) return;
 
         signOutCoroutine = StartCoroutine(RegisterUser(email, username, password));
     }
@@ -210,34 +212,19 @@ public class AuthenticationManager : MonoBehaviour
         {
             AuthResult result = registerTask.Result;
 
-            if (ValidUsername(username))
-            {
-                Debug.LogFormat(
-                        "Firebase user created successfully: {0} ({1} : {2})",
-                        username,
-                        result.User.Email,
-                        result.User.UserId);
+            Debug.LogFormat(
+                    "Firebase user created successfully: {0} ({1} : {2})",
+                    username,
+                    result.User.Email,
+                    result.User.UserId);
 
-                PlayerPrefs.SetString("UserID", result.User.UserId);
-                database.Child("users").Child(result.User.UserId).Child("username").SetValueAsync(username);
-                database.Child("users").Child(result.User.UserId).Child("level").SetValueAsync(1);
-                database.Child("users").Child(result.User.UserId).Child("coins").SetValueAsync(0);
-                database.Child("users").Child(result.User.UserId).Child("maxExperience").SetValueAsync(1000);
-                database.Child("users").Child(result.User.UserId).Child("currentExperience").SetValueAsync(0);
-
-                SceneManagement.Instance.ChangeScene((int)AppScene.REGISTER);
-            }
-            else
-            {
-                FirebaseUser user = auth.CurrentUser;
-                user.DeleteAsync();
-                if (registerTask.IsCanceled)
-                    Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
-                else if (registerTask.IsFaulted)
-                    Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + registerTask.Exception.Message);
-                else
-                    Debug.Log("User deleted successfully.");
-            }
+            PlayerPrefs.SetString("UserID", result.User.UserId);
+            database.Child("users").Child(result.User.UserId).Child("username").SetValueAsync(username);
+            database.Child("users").Child(result.User.UserId).Child("level").SetValueAsync(1);
+            database.Child("users").Child(result.User.UserId).Child("coins").SetValueAsync(0);
+            database.Child("users").Child(result.User.UserId).Child("currentXP").SetValueAsync(0);
+            database.Child("users").Child(result.User.UserId).Child("requiredXP").SetValueAsync(0);
+            SceneManagement.Instance.ChangeScene((int)AppScene.REGISTER);
         }
     }
 
