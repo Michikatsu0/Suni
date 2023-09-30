@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioClip soundToPlay;
+    public AudioClip[] soundToPlay;
     private AudioSource audioSource;
 
     public bool isBackgroundMusic = false;
@@ -18,16 +18,22 @@ public class AudioManager : MonoBehaviour
 
         if (isBackgroundMusic && playOnAwake)
         {
-            PlaySound();
+            PlaySound(0);
         }
     }
 
-    public void PlaySound()
+    public void PlaySound(int audioClip)
     {
         if (soundToPlay != null && audioSource != null)
         {
-            audioSource.clip = soundToPlay;
-            audioSource.Play();
+            if (audioClip == 0)
+            {
+                audioSource.clip = soundToPlay[audioClip];
+                audioSource.Play();
+                audioSource.loop = true;
+            }
+            else            
+                audioSource.PlayOneShot(soundToPlay[audioClip]);                         
         }
         else
         {

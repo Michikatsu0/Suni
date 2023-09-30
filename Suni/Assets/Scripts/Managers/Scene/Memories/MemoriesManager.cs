@@ -12,7 +12,7 @@ public class MemoriesManager : MonoBehaviour
     [SerializeField] List<GameObject> uIElements = new List<GameObject>();
     
     private Image panelAlpha;
-    
+    [SerializeField] AudioSource audioSource;
     private void Awake()
     {
         panelAlpha = GameObject.Find("Panel").GetComponent<Image>();
@@ -20,6 +20,7 @@ public class MemoriesManager : MonoBehaviour
 
     public void PlayVideo(int anim)
     {
+        audioSource.Stop();
         if (anim >= videosPlayer.Count) return;
         EnableUI(false);
         videosPlayer[anim].loopPointReached += EndReached;
