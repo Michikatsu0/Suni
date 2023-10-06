@@ -1402,10 +1402,10 @@ RectTransform:
   m_Father: {fileID: 1238622218}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 197.42}
-  m_SizeDelta: {x: 537.13, y: 50}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 93.1, y: -577.8}
+  m_SizeDelta: {x: 756.98, y: 895.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &969369489
 MonoBehaviour:
@@ -1427,10 +1427,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Dise\xF1o: \n- Susana Bustamante\n- Laura\n- Juana Valentina Rico San\xEDn\n-
-    Juan Pablo\n- Yepes\n\nConcepto:\n- Andres Arango Velez\n- Cheira Marulanda\n\nProducci\xF3n:\n-
-    Sebastian Segovia Medina\n- Cheira Marulanda\n- Sebastian Tirado\n- Andres Arango
-    Velez\n"
+  m_text: "Dise\xF1o: \n\n- Susana Bustamante Cardona\n- Laura Rut Aristiz\xE1bal
+    Garc\xEDa \n- Juana Valentina Rico San\xEDn\n- Juan Camilo Sierra Mejia\n- Juan
+    Pablo Arango Zuleta\n- Alejandra Yepes Rios\n\nConcepto:\n\n- Andr\xE9s Arango
+    V\xE9lez\n- Cheira Marulanda L\xF3pez\n\nProducci\xF3n:\n\n- Sebastian Segovia
+    Medina\n- Cheira Marulanda L\xF3pez\n- Sebastian Tirado\n- Andr\xE9s Arango V\xE9lez\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1464,7 +1465,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1793,7 +1794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1279481498
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1813,7 +1814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -210.00003, y: -228.8}
+  m_AnchoredPosition: {x: -210.00003, y: -228.79999}
   m_SizeDelta: {x: 419.776, y: 441.76428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1293560634
@@ -2360,9 +2361,9 @@ RectTransform:
   m_Father: {fileID: 1238622218}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -390.9}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 171.1}
   m_SizeDelta: {x: 114.16, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1511829836
