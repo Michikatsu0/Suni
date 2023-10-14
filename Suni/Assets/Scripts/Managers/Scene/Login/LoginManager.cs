@@ -22,6 +22,7 @@ public class LoginManager : MonoBehaviour
             PlayerPrefs.DeleteAll();
             PlayerPrefs.SetInt("NewUser", 0);
             PlayerPrefs.SetInt("Menu", 0);
+            PlayerPrefs.SetInt("SetAudio", 0);
         }
         else
         {

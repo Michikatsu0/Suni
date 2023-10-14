@@ -18,6 +18,7 @@ public class AuthenticationManager : MonoBehaviour
     private Button loginButton;
     private Button signUpButton;
     private Button restoreButton;
+    private Button loginGuest;
 
     private Coroutine loginCoroutine;
     private Coroutine signOutCoroutine;
@@ -25,13 +26,13 @@ public class AuthenticationManager : MonoBehaviour
     private Coroutine restorePasswordCoroutine;
 
     DatabaseReference database;
-    private string username;
 
     private void Awake()
     {
         loginButton = GameObject.Find("Button_Login").GetComponent<Button>();
         signUpButton = GameObject.Find("Button_SignUp").GetComponent<Button>();
         restoreButton = GameObject.Find("Button_Restore").GetComponent<Button>();
+        loginGuest = GameObject.Find("Button_LoginAsGuest").GetComponent<Button>();
     }
 
     void Start()
@@ -41,9 +42,33 @@ public class AuthenticationManager : MonoBehaviour
         loginButton.onClick.AddListener(HandleLoginButtonClicked);
         signUpButton.onClick.AddListener(HandleRegisterButtonClicked);
         restoreButton.onClick.AddListener(HandleRestoreButtonClicked);
+        loginGuest.onClick.AddListener(HandleLoginGuestButtonClicked);
         database = FirebaseDatabase.DefaultInstance.RootReference;
         if (FirebaseAuth.DefaultInstance.CurrentUser != null)
-            SceneManager.LoadScene((int)AppScene.HOME);
+        {
+            PlayerPrefs.SetInt("SetAudio", 1);
+            SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
+        }
+    }
+
+    private void HandleLoginGuestButtonClicked()
+    {
+        FirebaseAuth.DefaultInstance.SignInAnonymouslyAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+                Debug.Log(task.Exception);
+            else if (task.IsCompleted)
+            {
+                var result = task.Result;
+                PlayerPrefs.SetString("UserID", result.User.UserId);
+                database.Child("users").Child(result.User.UserId).Child("username").SetValueAsync("#" + UnityEngine.Random.Range(1000,9999));
+                database.Child("users").Child(result.User.UserId).Child("level").SetValueAsync(1);
+                database.Child("users").Child(result.User.UserId).Child("coins").SetValueAsync(0);
+                database.Child("users").Child(result.User.UserId).Child("currentXP").SetValueAsync(0);
+                database.Child("users").Child(result.User.UserId).Child("requiredXP").SetValueAsync(79);
+                SceneManagement.Instance.ChangeScene((int)AppScene.REGISTER);
+            }
+        });
     }
 
     private void HandleRestoreButtonClicked()
@@ -131,9 +156,8 @@ public class AuthenticationManager : MonoBehaviour
         }
         else
         {
-            AuthResult result = registerTask.Result;
-
             GetUsername(auth);
+            PlayerPrefs.SetInt("SetAudio", 1);
             SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
         }
 
@@ -230,7 +254,6 @@ public class AuthenticationManager : MonoBehaviour
 
     private bool ValidUsername(string username)
     {
-        this.username = username;
         if (String.IsNullOrEmpty(username))
         {
             DisableUIErrors();

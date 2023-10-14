@@ -7,14 +7,22 @@ using UnityEngine.SceneManagement;
 
 public class HomeManager : MonoBehaviour
 {
+    private int setAudio;
+
     private void Awake()
     {
-        
+        setAudio = PlayerPrefs.GetInt("SetAudio");
     }
-    // Start is called before the first frame update
+
     void Start()
     {
+        
         UIElementsManager.Instance.DisableUI();
+        if (setAudio == 1)
+        {
+            PlayerPrefs.SetInt("SetAudio", 0);
+            AudioManager.Instance.SetAudio();
+        }
     }
 
 }

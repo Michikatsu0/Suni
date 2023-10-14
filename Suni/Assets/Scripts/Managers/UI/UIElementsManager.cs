@@ -21,4 +21,8 @@ public class UIElementsManager : MonoBehaviour
         }
     }
 
+    public void PlaySound(int audioClip)
+    {
+        AudioManager.Instance.PlaySound(audioClip);
+    }
 }

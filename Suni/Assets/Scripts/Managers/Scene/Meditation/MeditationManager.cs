@@ -23,6 +23,8 @@ public class MeditationManager : MonoBehaviour
 
     public void PlayVideo()
     {
+        AudioManager.Instance.audioSource.volume = 0.3f;
+        MenuManager.Instance.EnableMenu(false);
         var color = new Color(1f, 1f, 1f, 0f);
         panelAlpha.color = color;
         videoPlayer.Play();
@@ -31,6 +33,8 @@ public class MeditationManager : MonoBehaviour
 
     public void EndReached(VideoPlayer vp)
     {
+        AudioManager.Instance.audioSource.volume = 1f;
+        MenuManager.Instance.EnableMenu();
         var color = new Color(1f, 1f, 1f, 1f);
         panelAlpha.color = color;
         videoButtons[1].gameObject.SetActive(true);

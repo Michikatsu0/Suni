@@ -1,4 +1,6 @@
 using Firebase.Auth;
+using Firebase.Database;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +9,10 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
-    private GameObject menu; 
-    
+    private GameObject menu;
+    DatabaseReference mDatabase;
+    FirebaseAuth mAuth;
+
     private void Awake()
     {
         Instance = this;
@@ -18,6 +22,22 @@ public class MenuManager : MonoBehaviour
 
     public void SignOut()
     {
+        mDatabase = FirebaseDatabase.DefaultInstance.RootReference;
+        mAuth = FirebaseAuth.DefaultInstance;
+
+        if (mAuth.CurrentUser.IsAnonymous)
+        {
+            mDatabase.Child("users").Child(mAuth.CurrentUser.UserId).RemoveValueAsync();
+
+            mAuth.CurrentUser.DeleteAsync().ContinueWith(task =>
+            {
+                if (task.IsCompleted && !task.IsFaulted)
+                    Debug.Log("Usuario anónimo eliminado exitosamente.");
+                else
+                    Debug.LogError("Error al eliminar el usuario: " + task.Exception.ToString());
+            });
+        }
+
         FirebaseAuth.DefaultInstance.SignOut();
         SceneManager.LoadScene((int)AppScene.LOGIN);
     }

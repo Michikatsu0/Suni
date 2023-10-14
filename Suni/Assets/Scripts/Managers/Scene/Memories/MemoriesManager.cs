@@ -12,7 +12,6 @@ public class MemoriesManager : MonoBehaviour
     [SerializeField] List<GameObject> uIElements = new List<GameObject>();
     
     private Image panelAlpha;
-    [SerializeField] AudioSource audioSource;
     private void Awake()
     {
         panelAlpha = GameObject.Find("Panel").GetComponent<Image>();
@@ -20,7 +19,7 @@ public class MemoriesManager : MonoBehaviour
 
     public void PlayVideo(int anim)
     {
-        audioSource.Stop();
+        AudioManager.Instance.audioSource.Pause();
         if (anim >= videosPlayer.Count) return;
         EnableUI(false);
         videosPlayer[anim].loopPointReached += EndReached;
@@ -39,6 +38,7 @@ public class MemoriesManager : MonoBehaviour
 
     private void EndReached(VideoPlayer source)
     {
+        AudioManager.Instance.audioSource.UnPause();
         var color = new Color(1f, 1f, 1f, 1f);
         panelAlpha.color = color;
         source.gameObject.SetActive(false);

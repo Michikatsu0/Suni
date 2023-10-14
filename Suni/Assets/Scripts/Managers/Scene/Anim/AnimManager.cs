@@ -12,25 +12,14 @@ public class AnimManager : MonoBehaviour
     [SerializeField] private VideoPlayer[] videosPlayer;
     [SerializeField] private GameObject[] uiElemetsList;
 
-    private void Awake()
+    private void Start()
     {
         GetNextScene();
     }
-
-    private void EndReached(VideoPlayer source)
-    {
-        if (PlayerPrefs.GetInt("NewUser") == 1)
-            SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
-        else
-        {
-            PlayerPrefs.SetInt("NewUser", 1);
-            SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
-        }
-    }
-
-
     private void GetNextScene()
     {
+        AudioManager.Instance.audioSource.Pause();
+        PlayerPrefs.SetFloat("SetAudio", 1);
         if (PlayerPrefs.GetInt("NewUser") == 1)
         {
             videosPlayer[1].Play();
@@ -40,23 +29,40 @@ public class AnimManager : MonoBehaviour
         else
         {
             videosPlayer[0].Play();
+            
             videosPlayer[0].loopPointReached += EndReached;
             uiElemetsList[0].GetComponent<Button>().onClick.AddListener(LoginLoader);
         }
     }
 
+    private void EndReached(VideoPlayer source)
+    {
+        AudioManager.Instance.audioSource.UnPause();
+        if (PlayerPrefs.GetInt("NewUser") == 1)
+            SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
+        else
+        {
+            PlayerPrefs.SetInt("NewUser", 1);
+            SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
+        }
+    }
+
     private void HomeLoader()
     {
+        PlayerPrefs.SetInt("SetAudio", 1);
         SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
     }
 
     private void LoginLoader()
     {
+        PlayerPrefs.SetInt("SetAudio", 1);
+        PlayerPrefs.SetInt("NewUser", 1);
         SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
     }
 
     public void SkipAnimation()
     {
+        PlayerPrefs.SetInt("SetAudio", 1);
         PlayerPrefs.SetInt("NewUser", 1);
     }
 }
