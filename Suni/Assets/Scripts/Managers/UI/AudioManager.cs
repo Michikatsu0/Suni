@@ -125,7 +125,7 @@ public class AudioManager : MonoBehaviour
             }
             else
             {
-                if (background != 0)
+                if (ui != 0)
                     audioSources[3].PlayOneShot(soundToPlay[audioClip]);
             }
         }
@@ -136,7 +136,7 @@ public class AudioManager : MonoBehaviour
 
         if (soundToPlay != null && audioSources != null)
         {
-            if (audioClip == 0 || audioClip == 1 || audioClip == 2 && music != 0 || background != 0)
+            if (audioClip == 0 || audioClip == 1 || audioClip == 2)
             {
                 audioSources[sourcesIndex].volume = 1f;
                 audioSources[sourcesIndex].clip = soundToPlay[audioClip];
