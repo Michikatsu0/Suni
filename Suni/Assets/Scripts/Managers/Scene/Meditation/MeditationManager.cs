@@ -12,6 +12,8 @@ public class MeditationManager : MonoBehaviour
     private void Awake()
     {
         panelAlpha = GameObject.Find("Panel").GetComponent<Image>();
+        var color = new Color(1f, 1f, 1f, 0f);
+        panelAlpha.color = color;
         videoPlayer.Play();
         videoPlayer.Pause();
     }
