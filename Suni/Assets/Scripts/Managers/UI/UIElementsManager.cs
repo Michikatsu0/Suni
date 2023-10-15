@@ -2,7 +2,9 @@ using Firebase.Auth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class UIElementsManager : MonoBehaviour
 {
@@ -12,6 +14,12 @@ public class UIElementsManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        AudioManager.Instance.musicVolumen = 1;
+        AudioManager.Instance.GetSettings();
     }
 
     public void DisableUI()

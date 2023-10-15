@@ -1225,6 +1225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animShortSpan: 5
   animLongSpan: 10
+  smooothVolumen: 1
   videosPlayer:
   - {fileID: 214043169}
   - {fileID: 1668442738}

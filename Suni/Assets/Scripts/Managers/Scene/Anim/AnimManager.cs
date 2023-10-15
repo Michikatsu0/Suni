@@ -11,15 +11,16 @@ public class AnimManager : MonoBehaviour
     [SerializeField] private float animShortSpan, animLongSpan;
     [SerializeField] private VideoPlayer[] videosPlayer;
     [SerializeField] private GameObject[] uiElemetsList;
-
+    
     private void Start()
     {
         GetNextScene();
     }
+
     private void GetNextScene()
     {
-        AudioManager.Instance.audioSource.Pause();
-        PlayerPrefs.SetFloat("SetAudio", 1);
+        AudioManager.Instance.musicVolumen = 0f;
+        PlayerPrefs.SetInt("SetAudio", 1);
         if (PlayerPrefs.GetInt("NewUser") == 1)
         {
             videosPlayer[1].Play();
@@ -29,7 +30,6 @@ public class AnimManager : MonoBehaviour
         else
         {
             videosPlayer[0].Play();
-            
             videosPlayer[0].loopPointReached += EndReached;
             uiElemetsList[0].GetComponent<Button>().onClick.AddListener(LoginLoader);
         }
@@ -37,7 +37,7 @@ public class AnimManager : MonoBehaviour
 
     private void EndReached(VideoPlayer source)
     {
-        AudioManager.Instance.audioSource.UnPause();
+        
         if (PlayerPrefs.GetInt("NewUser") == 1)
             SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
         else
@@ -62,6 +62,7 @@ public class AnimManager : MonoBehaviour
 
     public void SkipAnimation()
     {
+        AudioManager.Instance.musicVolumen = 1f;
         PlayerPrefs.SetInt("SetAudio", 1);
         PlayerPrefs.SetInt("NewUser", 1);
     }

@@ -12,11 +12,12 @@ public class HomeManager : MonoBehaviour
     private void Awake()
     {
         setAudio = PlayerPrefs.GetInt("SetAudio");
+        
     }
 
     void Start()
     {
-        
+        AudioManager.Instance.musicVolumen = 1f;
         UIElementsManager.Instance.DisableUI();
         if (setAudio == 1)
         {

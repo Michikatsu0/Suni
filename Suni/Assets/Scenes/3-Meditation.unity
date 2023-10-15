@@ -3867,6 +3867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08fe9c1e8199bc94e99b0ff88b49bd13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smooothVolumen: 1
   videoPlayer: {fileID: 1562623708}
   videoButtons:
   - {fileID: 177763838}
