@@ -2391,7 +2391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay:
-  - {fileID: 8300000, guid: eb122c3b8860b934f8b71d208bdd5adb, type: 3}
+  - {fileID: 8300000, guid: ec0bfb146a4cdb34abef5fa9e80f641b, type: 3}
   - {fileID: 8300000, guid: 886052a878c21c74598ffe0042a3446d, type: 3}
   - {fileID: 8300000, guid: 5bfd197489cfade47bcea9c819931c57, type: 3}
   - {fileID: 8300000, guid: d11846670a36cd149aef027e1fe286e5, type: 3}
