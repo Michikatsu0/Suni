@@ -8,11 +8,11 @@ using UnityEngine.SceneManagement;
 public class HomeManager : MonoBehaviour
 {
     private int setAudio;
-
+    private Animator animatorTutorial;
     private void Awake()
     {
         setAudio = PlayerPrefs.GetInt("SetAudio");
-        
+        animatorTutorial = GameObject.Find("Tutorial").GetComponent<Animator>();
     }
 
     void Start()
@@ -26,4 +26,15 @@ public class HomeManager : MonoBehaviour
         }
     }
 
+
+    public void TutorialButtonMeditation()
+    {
+        animatorTutorial.SetBool("Meditation",true);
+    }
+    
+    public void TutorialButtonEnd()
+    {
+        animatorTutorial.SetBool("End",true);
+    }
+    
 }

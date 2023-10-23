@@ -5,6 +5,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -39,10 +40,7 @@ public class ExperienceBarController : MonoBehaviour
         Instance = this;
         mDatabase = FirebaseDatabase.DefaultInstance.RootReference;
         mAuth = FirebaseAuth.DefaultInstance;
-
-        
         GetUserStats(mAuth);
-        
     }
 
     private void Start()
@@ -71,7 +69,7 @@ public class ExperienceBarController : MonoBehaviour
                     string _level = "" + snapshot.Value;
                     level = int.Parse(_level);
                     levelText.text = "Level: " + level.ToString();
-                    requiredXP = CalculateRequiredXP();
+                    requiredXP = CalculateRequiredXp();
                 }
             });
         FirebaseDatabase.DefaultInstance
@@ -84,8 +82,8 @@ public class ExperienceBarController : MonoBehaviour
                 else if (task.IsCompleted)
                 {
                     DataSnapshot snapshot = task.Result;
-                    string _currentXP = "" + snapshot.Value;
-                    currentXP = float.Parse(_currentXP);
+                    string currentXp = "" + snapshot.Value;
+                    currentXP = float.Parse(currentXp);
                     currentTextXP.text = currentXP.ToString();
                     experienceBar.value = currentXP;
                 }
@@ -100,8 +98,8 @@ public class ExperienceBarController : MonoBehaviour
                 else if (task.IsCompleted)
                 {
                     DataSnapshot snapshot = task.Result;
-                    string _requiredXP = "" + snapshot.Value;
-                    requiredXP = float.Parse(_requiredXP);
+                    string requiredXp = "" + snapshot.Value;
+                    this.requiredXP = float.Parse(requiredXp);
                     requiredTextXP.text = requiredXP.ToString();
                     experienceBar.maxValue = requiredXP;
                 }
@@ -126,34 +124,34 @@ public class ExperienceBarController : MonoBehaviour
 
             if (isVideoPlaying)
             {
-                GainXP(CalculateGetXP());
+                GainXp(CalculateGetXp());
             }
         }
     }
 
-    public int CalculateGetXP()
+    public int CalculateGetXp()
     {
-        float xp = a * level + b * Mathf.Log(level + c);
+        var xp = a * level + b * Mathf.Log(level + c);
         return Mathf.RoundToInt(xp);
     }
 
-    private int CalculateRequiredXP()
+    private int CalculateRequiredXp()
     {
-        int requiredXP = 0;
-        for (int levelCycle = 1; levelCycle <= level; levelCycle++)
-            requiredXP += (int)Mathf.Floor(levelCycle + additionMultiplier * Mathf.Pow(powerMultiplier, levelCycle / divisionMultiplier));           
+        var requiredXp = 0;
+        for (var levelCycle = 1; levelCycle <= level; levelCycle++)
+            requiredXp += (int)Mathf.Floor(levelCycle + additionMultiplier * Mathf.Pow(powerMultiplier, levelCycle / divisionMultiplier));           
         
-        mDatabase.Child("users").Child(mAuth.CurrentUser.UserId).Child("requiredXP").SetValueAsync(requiredXP / 4);
-        return requiredXP/4;
+        mDatabase.Child("users").Child(mAuth.CurrentUser.UserId).Child("requiredXP").SetValueAsync(requiredXp / 4);
+        return requiredXp/4;
     }
 
-    public void GainXP(float gainedXP)
+    public void GainXp(float gainedXp)
     {
-        currentXP += gainedXP;
+        currentXP += gainedXp;
         mDatabase.Child("users").Child(mAuth.CurrentUser.UserId).Child("currentXP").SetValueAsync(currentXP);
         if (currentXP > requiredXP)
         {
-            requiredXP = CalculateRequiredXP();
+            requiredXP = CalculateRequiredXp();
             SetNewLevel();
         }
         UpdateExperienceBar();
@@ -167,7 +165,7 @@ public class ExperienceBarController : MonoBehaviour
         levelText.text = ("Level " + level);
         mDatabase.Child("users").Child(mAuth.CurrentUser.UserId).Child("level").SetValueAsync(level);
         mDatabase.Child("users").Child(mAuth.CurrentUser.UserId).Child("currentXP").SetValueAsync(currentXP);
-        requiredXP = CalculateRequiredXP();
+        requiredXP = CalculateRequiredXp();
         mDatabase.Child("users").Child(mAuth.CurrentUser.UserId).Child("requiredXP").SetValueAsync(requiredXP);
     }
 
