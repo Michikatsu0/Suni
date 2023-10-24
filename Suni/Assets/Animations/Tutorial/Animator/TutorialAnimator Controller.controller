@@ -14,7 +14,7 @@ AnimatorStateMachine:
     m_Position: {x: 300, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3925499987547131819}
-    m_Position: {x: 300, y: 100, z: 0}
+    m_Position: {x: 300, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3500477949080914215}
     m_Position: {x: 300, y: -100, z: 0}
@@ -90,6 +90,12 @@ AnimatorController:
   m_Name: TutorialAnimator Controller
   serializedVersion: 5
   m_AnimatorParameters:
+  - m_Name: Start
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   - m_Name: Meditation
     m_Type: 4
     m_DefaultFloat: 0

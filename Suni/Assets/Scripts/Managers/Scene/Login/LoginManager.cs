@@ -28,7 +28,7 @@ public class LoginManager : MonoBehaviour
             PlayerPrefs.SetInt("MuteVoice", 0);
             PlayerPrefs.SetInt("MuteMusic", 0);
             PlayerPrefs.SetInt("MuteBackground", 0);
-
+            PlayerPrefs.SetInt("SetTutorial", 0);
         }
         else
         {
@@ -59,5 +59,12 @@ public class LoginManager : MonoBehaviour
     {
         rectTransform.anchoredPosition += rectTransfromVector;
     }
-
+    public void SetTutorialOldUser()
+    {
+        PlayerPrefs.SetInt("SetTutorial", 0);
+    }
+    public void SetTutorialNewUser()
+    {
+        PlayerPrefs.SetInt("SetTutorial", 0);
+    }
 }
