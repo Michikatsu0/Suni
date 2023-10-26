@@ -2828,7 +2828,7 @@ Transform:
   m_Children:
   - {fileID: 2126587202}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994720073
 GameObject:
@@ -2998,11 +2998,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay:
-  - {fileID: 8300000, guid: ec0bfb146a4cdb34abef5fa9e80f641b, type: 3}
-  - {fileID: 8300000, guid: 886052a878c21c74598ffe0042a3446d, type: 3}
-  - {fileID: 8300000, guid: 5bfd197489cfade47bcea9c819931c57, type: 3}
+  - {fileID: 8300000, guid: 4b2763bc5146ad44ba290605e6d7cf30, type: 3}
+  - {fileID: 8300000, guid: 9a07925fe622ac348808da45861ed0d5, type: 3}
+  - {fileID: 8300000, guid: 31f723b84a36930489a8eb756f2739e5, type: 3}
   - {fileID: 8300000, guid: d11846670a36cd149aef027e1fe286e5, type: 3}
   - {fileID: 8300000, guid: 5cfdbe9dcebc39f4d9489c060e48f836, type: 3}
+  backgroundPlay:
+  - {fileID: 8300000, guid: 21ec19445f63b214c8ad1cfb269f6f33, type: 3}
+  - {fileID: 8300000, guid: cec68095960b5f8418e520f31c80ed3b, type: 3}
+  - {fileID: 8300000, guid: 199ea3e38f345be44be519cf8334ddb9, type: 3}
+  - {fileID: 8300000, guid: e4424537617971f4199753103e742fd5, type: 3}
+  - {fileID: 8300000, guid: 585d84b31822cd340875e9287fb537cf, type: 3}
+  - {fileID: 8300000, guid: 5a08a4108141cf04093f5b1b50be0ca7, type: 3}
   audioSource: {fileID: 1000010119}
   audioSources:
   - {fileID: 1000010124}
@@ -3032,7 +3039,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1000010122
 AudioSource:
@@ -3334,7 +3341,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.528
   m_Pitch: 1
   Loop: 0
   Mute: 0

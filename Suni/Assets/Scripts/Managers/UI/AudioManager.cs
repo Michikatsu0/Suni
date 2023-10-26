@@ -9,10 +9,11 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public AudioClip[] soundToPlay;
+    public AudioClip[] backgroundPlay;
     public AudioSource audioSource;
     public AudioSource[] audioSources;
 
-    public float smooothVolumen = 1f, musicVolumen = 1f, backgroundVolumen = 1f;
+    public float smooothVolumen = 1f, notificationVolumen = 1f,  voiceVolumen, musicVolumen = 1f, backgroundVolumen = 1f, uiVolumen = 1f;
     public bool isBackgroundMusic = false;
     public bool playOnAwake = false;
     public int notification, voice, music, background, ui;
@@ -96,16 +97,30 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
+       audioSources[0].volume = Mathf.Lerp(audioSources[3].volume, notificationVolumen, smooothVolumen * Time.deltaTime);
+       audioSources[1].volume = Mathf.Lerp(audioSources[3].volume, voiceVolumen, smooothVolumen * Time.deltaTime);
        audioSource.volume = Mathf.Lerp(audioSource.volume, musicVolumen, smooothVolumen * Time.deltaTime);
-       audioSources[3].volume = Mathf.Lerp(audioSources[3].volume, backgroundVolumen, smooothVolumen * Time.deltaTime);
+       audioSources[2].volume = Mathf.Lerp(audioSources[3].volume, backgroundVolumen, smooothVolumen * Time.deltaTime);
+       audioSources[3].volume = Mathf.Lerp(audioSources[3].volume, uiVolumen, smooothVolumen * Time.deltaTime);
     }
 
     public void SetAudio()
     {
         if (SceneManager.GetActiveScene().buildIndex == (int)AppScene.LOGIN)
+        {
             PlaySound(0);
+        }
+
         if (SceneManager.GetActiveScene().buildIndex == (int)AppScene.HOME)
+        {
             PlaySound(1);
+        }
+            
+            if (SceneManager.GetActiveScene().buildIndex == (int)AppScene.CREDITS)
+            {
+                PlaySound(0);
+            }
+            
     }
 
     public void PlaySound(int audioClip)
