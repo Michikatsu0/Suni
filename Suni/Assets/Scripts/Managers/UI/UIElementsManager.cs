@@ -33,4 +33,11 @@ public class UIElementsManager : MonoBehaviour
     {
         AudioManager.Instance.PlaySound(audioClip);
     }
+
+
+    public void PlaySoundBackground(int audioClip)
+    {
+        AudioManager.Instance.PlaySoundBackground(audioClip);
+    }
+
 }

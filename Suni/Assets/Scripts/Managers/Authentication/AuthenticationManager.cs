@@ -46,7 +46,7 @@ public class AuthenticationManager : MonoBehaviour
         database = FirebaseDatabase.DefaultInstance.RootReference;
         if (FirebaseAuth.DefaultInstance.CurrentUser != null)
         {
-            PlayerPrefs.SetInt("SetAudio", 1);
+            PlayerPrefs.SetInt("SetAudio", 0);
             SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
         }
     }
@@ -157,7 +157,7 @@ public class AuthenticationManager : MonoBehaviour
         else
         {
             GetUsername(auth);
-            PlayerPrefs.SetInt("SetAudio", 1);
+            PlayerPrefs.SetInt("SetAudio", 0);
             SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
         }
 

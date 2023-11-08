@@ -1,32 +1,48 @@
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class VideoScaler : MonoBehaviour
 {
-    [SerializeField] private VideoPlayer videoPlayer;
-    private RectTransform rectTransform;
     [SerializeField] private RectTransform canvasScale; 
-    private void Start()
-    {
-        rectTransform = GetComponent<RectTransform>();
-        videoPlayer.loopPointReached += OnVideoLoopPointReached;
-        videoPlayer.prepareCompleted += OnVideoPrepared;
-    }
+    [HideInInspector] public VideoPlayer videoPlayer;
+    private RenderTexture renderTexture;
+    private RectTransform quadRectTransform;
+    public Material shader;
+    [HideInInspector] public MeshRenderer meshRenderer;
 
-    void OnVideoPrepared(VideoPlayer source)
+    private void Awake()
     {
+        quadRectTransform = GetComponent<RectTransform>();
+        meshRenderer = GetComponent<MeshRenderer>();
+        videoPlayer = GetComponent<VideoPlayer>();
         AdjustAspectRatio();
+        CreateTexture();
     }
 
-    void OnVideoLoopPointReached(VideoPlayer source)
+    private void Update()
     {
         AdjustAspectRatio();
     }
 
     void AdjustAspectRatio()
     {
-        var localScale = canvasScale.sizeDelta;
-        rectTransform.localScale = new Vector2(localScale.x, localScale.y);
+        quadRectTransform.localScale = canvasScale.sizeDelta;
+    }
+    
+    public void CreateTexture()
+    {
+        renderTexture = new RenderTexture(1080, 1920, 0, DefaultFormat.LDR);
+        videoPlayer.targetTexture = renderTexture;
+        shader?.SetTexture("_MainTexture", renderTexture);
+    }
+
+    public void ChangeVideo(VideoClip newVideoClip)
+    {
+        if (!videoPlayer.targetTexture || shader.GetTexture("_MainTexture") == null) CreateTexture();
+        videoPlayer.Stop();
+        videoPlayer.clip = newVideoClip;
+        videoPlayer.Play();
     }
 }

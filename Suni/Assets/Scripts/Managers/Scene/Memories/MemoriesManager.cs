@@ -26,9 +26,11 @@ public class MemoriesManager : MonoBehaviour
     public void PlayVideo(int anim)
     {
         AudioManager.Instance.musicVolumen = 0f;
+        AudioManager.Instance.backgroundVolumen = 0f;
         backgroundVideo.Stop();
         if (anim >= videosPlayer.Count) return;
         EnableUI(false);
+        videosPlayer[anim].gameObject.SetActive(true);
         videosPlayer[anim].loopPointReached += EndReached;
         videosPlayer[anim].Play();
 
@@ -46,6 +48,7 @@ public class MemoriesManager : MonoBehaviour
     private void EndReached(VideoPlayer source)
     {
         AudioManager.Instance.musicVolumen = 1f;
+        AudioManager.Instance.backgroundVolumen = 1f;
         backgroundVideo.Play();
         var color = new Color(1f, 1f, 1f, 1f);
         panelAlpha.color = color;

@@ -24,21 +24,24 @@ public class LoginManager : MonoBehaviour
             PlayerPrefs.SetInt("NewUser", 0);
             PlayerPrefs.SetInt("Menu", 0);
             PlayerPrefs.SetInt("SetAudio", 0);
-            PlayerPrefs.SetInt("SetNotification", 0);
-            PlayerPrefs.SetInt("MuteVoice", 0);
-            PlayerPrefs.SetInt("MuteMusic", 0);
-            PlayerPrefs.SetInt("MuteBackground", 0);
             PlayerPrefs.SetInt("SetTutorial", 0);
+            PlayerPrefs.SetInt("SetMeditation", 0);
+            PlayerPrefs.SetInt("MuteNotification", 1);
+            PlayerPrefs.SetInt("MuteVoice", 1);
+            PlayerPrefs.SetInt("MuteMusic", 1);
+            PlayerPrefs.SetInt("MuteNoise", 1);
+            PlayerPrefs.SetInt("MuteUI", 1);
         }
         else
         {
 
             setAudio = PlayerPrefs.GetInt("SetAudio");
-            if (setAudio == 1)
+            if (setAudio == 0)
             {
-                PlayerPrefs.SetInt("SetAudio", 0);
+                PlayerPrefs.SetInt("SetAudio", 1);
                 AudioManager.Instance.SetAudio();
             }
+
             newUser = PlayerPrefs.GetInt("NewUser");
             if (newUser == 0)
                 SceneManager.LoadSceneAsync((int)AppScene.ANIM);

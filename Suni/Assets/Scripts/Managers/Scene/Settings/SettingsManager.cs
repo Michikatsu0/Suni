@@ -16,6 +16,7 @@ public class SettingsManager : MonoBehaviour
         SetSettings();
     }
 
+
     public void SetSettings()
     {
         if (AudioManager.Instance.notification != 0)
@@ -72,9 +73,9 @@ public class SettingsManager : MonoBehaviour
             else if (elementIndex == 3)
             {
                 if (rawImages[elementIndex].texture == firstTexture)
-                    PlayerPrefs.SetInt("MuteBackground", 1);
+                    PlayerPrefs.SetInt("MuteNoise", 1);
                 else
-                    PlayerPrefs.SetInt("MuteBackground", 0);
+                    PlayerPrefs.SetInt("MuteNoise", 0);
             }
             else if (elementIndex == 4)
             {

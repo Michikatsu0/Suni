@@ -19,8 +19,9 @@ public class AnimManager : MonoBehaviour
 
     private void GetNextScene()
     {
+        AudioManager.Instance.backgroundVolumen = 0f;
         AudioManager.Instance.musicVolumen = 0f;
-        PlayerPrefs.SetInt("SetAudio", 1);
+        PlayerPrefs.SetInt("SetAudio", 0);
         if (PlayerPrefs.GetInt("NewUser") == 1)
         {
             videosPlayer[1].Play();
@@ -37,25 +38,31 @@ public class AnimManager : MonoBehaviour
 
     private void EndReached(VideoPlayer source)
     {
-        
+
+        AudioManager.Instance.backgroundVolumen = 1f;
+        AudioManager.Instance.musicVolumen = 1f;
         if (PlayerPrefs.GetInt("NewUser") == 1)
+        {
+            PlayerPrefs.SetInt("SetAudio", 0);
             SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
+        }
         else
         {
             PlayerPrefs.SetInt("NewUser", 1);
+            PlayerPrefs.SetInt("SetAudio", 0);
             SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
         }
     }
 
     private void HomeLoader()
     {
-        PlayerPrefs.SetInt("SetAudio", 1);
+        PlayerPrefs.SetInt("SetAudio", 0);
         SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
     }
 
     private void LoginLoader()
     {
-        PlayerPrefs.SetInt("SetAudio", 1);
+        PlayerPrefs.SetInt("SetAudio", 0);
         PlayerPrefs.SetInt("NewUser", 1);
         SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
     }
@@ -63,7 +70,8 @@ public class AnimManager : MonoBehaviour
     public void SkipAnimation()
     {
         AudioManager.Instance.musicVolumen = 1f;
-        PlayerPrefs.SetInt("SetAudio", 1);
+        AudioManager.Instance.backgroundVolumen = 1f;
+        PlayerPrefs.SetInt("SetAudio", 0);
         PlayerPrefs.SetInt("NewUser", 1);
     }
 }

@@ -3885,12 +3885,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985031698}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &985031700
 MonoBehaviour:
@@ -3907,16 +3907,14 @@ MonoBehaviour:
   soundToPlay:
   - {fileID: 8300000, guid: 4b2763bc5146ad44ba290605e6d7cf30, type: 3}
   - {fileID: 8300000, guid: 9a07925fe622ac348808da45861ed0d5, type: 3}
-  - {fileID: 8300000, guid: 31f723b84a36930489a8eb756f2739e5, type: 3}
+  - {fileID: 8300000, guid: 8f456eb80eddad14daa94ba6e748ea92, type: 3}
   - {fileID: 8300000, guid: d11846670a36cd149aef027e1fe286e5, type: 3}
   - {fileID: 8300000, guid: 5cfdbe9dcebc39f4d9489c060e48f836, type: 3}
   backgroundPlay:
-  - {fileID: 8300000, guid: 21ec19445f63b214c8ad1cfb269f6f33, type: 3}
-  - {fileID: 8300000, guid: cec68095960b5f8418e520f31c80ed3b, type: 3}
-  - {fileID: 8300000, guid: 199ea3e38f345be44be519cf8334ddb9, type: 3}
-  - {fileID: 8300000, guid: e4424537617971f4199753103e742fd5, type: 3}
-  - {fileID: 8300000, guid: 585d84b31822cd340875e9287fb537cf, type: 3}
-  - {fileID: 8300000, guid: 5a08a4108141cf04093f5b1b50be0ca7, type: 3}
+  - {fileID: 8300000, guid: 20fd3c2686f4e204d8a918d917f2d622, type: 3}
+  - {fileID: 8300000, guid: e7e3609b364e57644a47ccfb6c635066, type: 3}
+  - {fileID: 8300000, guid: d4c7be69d45507d45a8a7359929d2cf6, type: 3}
+  voicePlay: []
   audioSource: {fileID: 985031701}
   audioSources:
   - {fileID: 985031704}
@@ -3992,7 +3990,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4446,7 +4444,7 @@ Transform:
   m_Children:
   - {fileID: 2025927410}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1037572101
 GameObject:
@@ -7769,7 +7767,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025927409}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: d94b267e7f1a25344866a3199cb6606a, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 2eec358bbed1b5a459efc7a9ce1c2c3d, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 519420031}
