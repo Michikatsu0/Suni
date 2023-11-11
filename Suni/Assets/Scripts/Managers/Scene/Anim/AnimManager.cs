@@ -15,6 +15,7 @@ public class AnimManager : MonoBehaviour
     private void Start()
     {
         GetNextScene();
+        PlayerPrefs.Save();
     }
 
     private void GetNextScene()
@@ -44,19 +45,23 @@ public class AnimManager : MonoBehaviour
         if (PlayerPrefs.GetInt("NewUser") == 1)
         {
             PlayerPrefs.SetInt("SetAudio", 0);
+            PlayerPrefs.Save();
             SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
         }
         else
         {
             PlayerPrefs.SetInt("NewUser", 1);
             PlayerPrefs.SetInt("SetAudio", 0);
+            PlayerPrefs.Save();
             SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
         }
+        
     }
 
     private void HomeLoader()
     {
         PlayerPrefs.SetInt("SetAudio", 0);
+        PlayerPrefs.Save();
         SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
     }
 
@@ -64,7 +69,9 @@ public class AnimManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("SetAudio", 0);
         PlayerPrefs.SetInt("NewUser", 1);
+        PlayerPrefs.Save();
         SceneManagement.Instance.ChangeScene((int)AppScene.LOGIN);
+
     }
 
     public void SkipAnimation()
@@ -73,5 +80,6 @@ public class AnimManager : MonoBehaviour
         AudioManager.Instance.backgroundVolumen = 1f;
         PlayerPrefs.SetInt("SetAudio", 0);
         PlayerPrefs.SetInt("NewUser", 1);
+        PlayerPrefs.Save();
     }
 }

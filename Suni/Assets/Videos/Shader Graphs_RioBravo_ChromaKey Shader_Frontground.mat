@@ -60,7 +60,7 @@ Material:
     - _Cull: 0
     - _DstBlend: 10
     - _Fuzziness: 0.34
-    - _HueRange: 0.61
+    - _HueRange: 3
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5

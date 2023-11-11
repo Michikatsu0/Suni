@@ -25,14 +25,10 @@ public class ExperienceBarController : MonoBehaviour
     [SerializeField] [Range(2f,4f)] private float powerMultiplier = 2;
     [SerializeField] [Range(7f,14f)] private float divisionMultiplier = 7;
     
-
     public TMP_Text levelText;
     public TMP_Text currentTextXP;
     public TMP_Text requiredTextXP;
 
-    public VideoPlayer videoPlayer;
-
-    private bool isVideoPlaying = false;
     [SerializeField] private float experienceInterval = 3f;
 
     private void Awake()
@@ -45,11 +41,8 @@ public class ExperienceBarController : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex != (int)AppScene.HOME)
+        if (SceneManager.GetActiveScene().buildIndex == (int)AppScene.MEDITATION)
         {
-            videoPlayer.started += OnVideoStarted;
-            videoPlayer.loopPointReached += OnVideoLoopPointReached;
-
             StartCoroutine(GainExperiencePeriodically());
         }
     }
@@ -106,23 +99,13 @@ public class ExperienceBarController : MonoBehaviour
             });
     }
 
-    private void OnVideoStarted(VideoPlayer vp)
-    {
-        isVideoPlaying = true;
-    }
-
-    private void OnVideoLoopPointReached(VideoPlayer vp)
-    {
-        isVideoPlaying = false;
-    }
-
     private IEnumerator GainExperiencePeriodically()
     {
         while (true)
         {
             yield return new WaitForSeconds(experienceInterval);
 
-            if (isVideoPlaying)
+            if (MeditationManager.Instance.isPlayingSuniMed)
             {
                 GainXp(CalculateGetXp());
             }

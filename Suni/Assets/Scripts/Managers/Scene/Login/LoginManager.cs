@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class LoginManager : MonoBehaviour
 {
-    [SerializeField] private bool resetPlayerPrefs;
-
     private RectTransform rectTransform;
     private string currentUserID;
     private int newUser = 0, setAudio; // 0=Y | 1=N
@@ -17,11 +15,11 @@ public class LoginManager : MonoBehaviour
     void Awake()
     {
         rectTransform = GameObject.Find("InputField_Password").GetComponent<RectTransform>();
+        newUser = PlayerPrefs.GetInt("NewUser");
 
-        if (resetPlayerPrefs)
+        if (newUser == 0)
         {
             PlayerPrefs.DeleteAll();
-            PlayerPrefs.SetInt("NewUser", 0);
             PlayerPrefs.SetInt("Menu", 0);
             PlayerPrefs.SetInt("SetAudio", 0);
             PlayerPrefs.SetInt("SetTutorial", 0);
@@ -31,22 +29,22 @@ public class LoginManager : MonoBehaviour
             PlayerPrefs.SetInt("MuteMusic", 1);
             PlayerPrefs.SetInt("MuteNoise", 1);
             PlayerPrefs.SetInt("MuteUI", 1);
+            PlayerPrefs.SetString("NotificationDateTime", "yyyy-MM-dd HH:mm:ss");
+            PlayerPrefs.SetInt("NotificationFlag", 0);
         }
-        else
+
+        setAudio = PlayerPrefs.GetInt("SetAudio");
+        if (setAudio == 0)
         {
-
-            setAudio = PlayerPrefs.GetInt("SetAudio");
-            if (setAudio == 0)
-            {
-                PlayerPrefs.SetInt("SetAudio", 1);
-                AudioManager.Instance.SetAudio();
-            }
-
-            newUser = PlayerPrefs.GetInt("NewUser");
-            if (newUser == 0)
-                SceneManager.LoadSceneAsync((int)AppScene.ANIM);
+            PlayerPrefs.SetInt("SetAudio", 1);
+            AudioManager.Instance.SetAudio();
         }
 
+
+        if (newUser == 0)
+            SceneManager.LoadSceneAsync((int)AppScene.ANIM);
+
+        PlayerPrefs.Save();
     }
     private void Start()
     {
@@ -65,9 +63,11 @@ public class LoginManager : MonoBehaviour
     public void SetTutorialOldUser()
     {
         PlayerPrefs.SetInt("SetTutorial", 0);
+
     }
     public void SetTutorialNewUser()
     {
         PlayerPrefs.SetInt("SetTutorial", 0);
+        PlayerPrefs.Save();
     }
 }

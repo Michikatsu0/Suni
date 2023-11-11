@@ -393,6 +393,145 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63000881}
   m_CullTransparentMesh: 1
+--- !u!1001 &92870588
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 195103057}
+    m_Modifications:
+    - target: {fileID: 4876486033883257038, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1298628697}
+    - target: {fileID: 4876486033883257038, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1949063249}
+    - target: {fileID: 4876486033883257038, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySound
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486033883257038, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486033883257038, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIElementsManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486033883257038, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SceneManagement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486033883257038, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486033883257038, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876486034053547273, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+      propertyPath: m_Name
+      value: ShowNotification
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+--- !u!224 &92870589 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4876486034053547272, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+  m_PrefabInstance: {fileID: 92870588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &92870590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4876486035365939998, guid: 2d9d88ccc1a647f4f97ff0ee7807b342, type: 3}
+  m_PrefabInstance: {fileID: 92870588}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &104004171
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +1012,7 @@ RectTransform:
   - {fileID: 1742172725}
   - {fileID: 1737654992}
   - {fileID: 2016069025}
+  - {fileID: 92870589}
   m_Father: {fileID: 2076595795}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1061,7 +1201,6 @@ MonoBehaviour:
   levelText: {fileID: 1057293840}
   currentTextXP: {fileID: 892188976}
   requiredTextXP: {fileID: 1485123104}
-  videoPlayer: {fileID: 0}
   experienceInterval: 5
 --- !u!114 &257603861
 MonoBehaviour:
@@ -1489,7 +1628,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "Barra de Nivel de EXP:\n\nCon ella podr\xE1s enterarte de tu progreso
+    actual de tu nivel de meditaci\xF3n."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 15d2724f275bf2646a9587fdbbb1f5b0, type: 2}
   m_sharedMaterial: {fileID: 404517314334361932, guid: 15d2724f275bf2646a9587fdbbb1f5b0, type: 2}
@@ -1986,6 +2126,7 @@ MonoBehaviour:
   canvasScale: {fileID: 2076595795}
   videoPlayer: {fileID: 0}
   shader: {fileID: 2100000, guid: c91aa5b4a420ef3419d6b394b58cb35a, type: 2}
+  meshRenderer: {fileID: 0}
 --- !u!1 &543654027
 GameObject:
   m_ObjectHideFlags: 0
@@ -2716,7 +2857,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 20fd3c2686f4e204d8a918d917f2d622, type: 3}
   - {fileID: 8300000, guid: e7e3609b364e57644a47ccfb6c635066, type: 3}
   - {fileID: 8300000, guid: d4c7be69d45507d45a8a7359929d2cf6, type: 3}
-  voicePlay: []
+  voicePlay:
+  - {fileID: 8300000, guid: 3c124ef9c197e7c4da715a8a3de8adba, type: 3}
+  notificationPlay:
+  - {fileID: 8300000, guid: 6e88798eff3f1194eb608801d10dda45, type: 3}
   audioSource: {fileID: 668852120}
   audioSources:
   - {fileID: 668852119}
@@ -2909,6 +3053,7 @@ MonoBehaviour:
   canvasScale: {fileID: 2076595795}
   videoPlayer: {fileID: 0}
   shader: {fileID: 2100000, guid: 40186024b118a52419e419ab09875021, type: 2}
+  meshRenderer: {fileID: 0}
 --- !u!328 &782107006
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -4706,7 +4851,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1c4653fbc7e4848acc18a764f514fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uIElementsList: []
+  uIElementsList:
+  - {fileID: 92870590}
+  flag: 0
+  internalflag: 0
+  uINotification: {fileID: 92870590}
 --- !u!1 &1298913801
 GameObject:
   m_ObjectHideFlags: 0
@@ -5391,7 +5540,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "Entorno de Meditaci\xF3n:\n\nEn este lugar puedes seguir consiguiendo
+    experiencia permanente y asi alcanzar nuevos niveles de Iluminaci\xF3n."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 15d2724f275bf2646a9587fdbbb1f5b0, type: 2}
   m_sharedMaterial: {fileID: 404517314334361932, guid: 15d2724f275bf2646a9587fdbbb1f5b0, type: 2}
@@ -8143,6 +8293,7 @@ MonoBehaviour:
   canvasScale: {fileID: 2076595795}
   videoPlayer: {fileID: 0}
   shader: {fileID: 2100000, guid: c2dc3c19e54f2ec42809deb0a198f5ac, type: 2}
+  meshRenderer: {fileID: 0}
 --- !u!328 &2141916983
 VideoPlayer:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class HomeManager : MonoBehaviour
         setTutorial = PlayerPrefs.GetInt("SetTutorial");
         setMeditation = PlayerPrefs.GetInt("SetMeditation");
         animatorTutorial = GameObject.Find("Tutorial").GetComponent<Animator>();
+    
     }
 
     void Start()

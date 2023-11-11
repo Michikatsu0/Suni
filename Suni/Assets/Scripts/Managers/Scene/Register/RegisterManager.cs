@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.Notifications.Android;
+using Firebase.Auth;
+using Firebase.Database;
+using Firebase.Extensions;
+using Unity.VisualScripting;
 
 public class RegisterManager : MonoBehaviour
 {
@@ -18,12 +21,16 @@ public class RegisterManager : MonoBehaviour
 
     [SerializeField] private Button scheduleButton;
 
-    private FirebaseMessaging messaging;
     private DateTime scheduledTime;
-    private FirebaseApp app;
+    private FirebaseAuth auth;
+    private string username;
+
 
     private void Awake()
     {
+        auth = FirebaseAuth.DefaultInstance;
+        GetUsername(auth);
+
         dropdownsNotf[0].ClearOptions();
         dropdownsNotf[0].AddOptions(dropdownStringsHours);
 
@@ -37,26 +44,30 @@ public class RegisterManager : MonoBehaviour
     public void Start()
     {
         UIElementsManager.Instance.DisableUI();
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
-            var dependencyStatus = task.Result;
-            if (dependencyStatus == Firebase.DependencyStatus.Available)
-            {
-                // Create and hold a reference to your FirebaseApp,
-                // where app is a Firebase.FirebaseApp property of your application class.
-                app = FirebaseApp.DefaultInstance;
+        scheduleButton.onClick.AddListener(ScheduleNotification);
+    }
 
-                // Set a flag here to indicate whether Firebase is ready to use by your app.
-            }
-            else
+    private void GetUsername(FirebaseAuth auth)
+    {
+        FirebaseDatabase.DefaultInstance
+        .GetReference("users/" + auth.CurrentUser.UserId + "/username")
+        .GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+                Debug.Log(task.Exception);
+            else if (task.IsCompleted)
             {
-                Debug.LogError(String.Format(
-                  "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
-                // Firebase Unity SDK is not safe to use here.
+                DataSnapshot snapshot = task.Result;
+
+                username = "" + snapshot.Value;
+
+                Debug.LogFormat(
+                "User signed in successfully: {0} ({1} : {2})",
+                snapshot.Value,
+                auth.CurrentUser.Email,
+                auth.CurrentUser.UserId);
             }
         });
-        FirebaseMessaging.TokenReceived += OnTokenReceived;
-        FirebaseMessaging.MessageReceived += OnMessageReceived;
-        scheduleButton.onClick.AddListener(ScheduleNotification);
     }
 
     public void OnTokenReceived(object sender, TokenReceivedEventArgs token)
@@ -76,25 +87,17 @@ public class RegisterManager : MonoBehaviour
         string amPm = dropdownsNotf[2].options[dropdownsNotf[2].value].text;
 
         if (amPm == "P.M." && hour < 12)
-        {
             hour += 12;
-        }
         else if (amPm == "A.M." && hour == 12)
-        {
             hour = 0;
-        }
 
         scheduledTime = DateTime.Now.Date.AddHours(hour).AddMinutes(minute);
 
-        var channel = new AndroidNotificationChannel()
-        {
-            Id = "channel_id",
-            Name = "Default Channel",
-            Importance = Importance.Default,
-            Description = "Generic notifications",
-        };
-        AndroidNotificationCenter.RegisterNotificationChannel(channel);
+        string dateTimeString = scheduledTime.ToString("yyyy-MM-dd HH:mm:ss");
+        PlayerPrefs.SetString("NotificationDateTime", dateTimeString);
+        PlayerPrefs.SetInt("NotificationFlag", 1);
 
-
+        PlayerPrefs.Save();
+        Debug.Log(scheduledTime);
     }
 }

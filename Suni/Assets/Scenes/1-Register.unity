@@ -292,7 +292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &168212038
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3565,6 +3565,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uIElementsList:
   - {fileID: 168212037}
+  - {fileID: 0}
+  flag: 0
+  uINotification: {fileID: 0}
 --- !u!1 &840805188
 GameObject:
   m_ObjectHideFlags: 0

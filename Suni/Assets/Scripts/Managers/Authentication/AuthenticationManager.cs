@@ -48,6 +48,7 @@ public class AuthenticationManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("SetAudio", 0);
             SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
+            PlayerPrefs.Save();
         }
     }
 
@@ -67,6 +68,7 @@ public class AuthenticationManager : MonoBehaviour
                 database.Child("users").Child(result.User.UserId).Child("currentXP").SetValueAsync(0);
                 database.Child("users").Child(result.User.UserId).Child("requiredXP").SetValueAsync(79);
                 SceneManagement.Instance.ChangeScene((int)AppScene.REGISTER);
+                PlayerPrefs.Save();
             }
         });
     }
@@ -159,6 +161,7 @@ public class AuthenticationManager : MonoBehaviour
             GetUsername(auth);
             PlayerPrefs.SetInt("SetAudio", 0);
             SceneManagement.Instance.ChangeScene((int)AppScene.HOME);
+            PlayerPrefs.Save();
         }
 
     }
@@ -247,8 +250,9 @@ public class AuthenticationManager : MonoBehaviour
             database.Child("users").Child(result.User.UserId).Child("level").SetValueAsync(1);
             database.Child("users").Child(result.User.UserId).Child("coins").SetValueAsync(0);
             database.Child("users").Child(result.User.UserId).Child("currentXP").SetValueAsync(0);
-            database.Child("users").Child(result.User.UserId).Child("requiredXP").SetValueAsync(0);
+            database.Child("users").Child(result.User.UserId).Child("requiredXP").SetValueAsync(79);
             SceneManagement.Instance.ChangeScene((int)AppScene.REGISTER);
+            PlayerPrefs.Save();
         }
     }
 

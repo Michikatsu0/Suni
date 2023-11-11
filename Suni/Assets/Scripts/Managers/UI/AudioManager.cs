@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] soundToPlay;
     public AudioClip[] backgroundPlay;
     public AudioClip[] voicePlay;
+    public AudioClip[] notificationPlay;
     public AudioSource audioSource;
     public AudioSource[] audioSources;
 
@@ -50,7 +51,7 @@ public class AudioManager : MonoBehaviour
 
     public void GetSettings()
     {
-        notification = PlayerPrefs.GetInt("SetNotification");
+        notification = PlayerPrefs.GetInt("MuteNotification");
         voice = PlayerPrefs.GetInt("MuteVoice");
         music = PlayerPrefs.GetInt("MuteMusic");
         background = PlayerPrefs.GetInt("MuteNoise");
@@ -76,12 +77,15 @@ public class AudioManager : MonoBehaviour
         }
         else
             audioSources[0].Stop();
-        
+
 
         if (voice != 0)
         {
             if (!audioSources[1].isPlaying)
-                audioSources[1].Play();
+                if (SceneManager.GetActiveScene().buildIndex == (int)AppScene.MEDITATION && MeditationManager.Instance.isPlayingSuniMed)
+                    audioSources[1].Play();
+                else if (SceneManager.GetActiveScene().buildIndex != (int)AppScene.MEDITATION)
+                    audioSources[1].Stop();
         }
         else
             audioSources[1].Stop();
@@ -177,13 +181,26 @@ public class AudioManager : MonoBehaviour
         if (voicePlay != null && audioSources != null)
         {
             audioSources[1].volume = 1f;
-            audioSources[1].clip = backgroundPlay[audioClip];
+            audioSources[1].clip = voicePlay[audioClip];
             
             if (voice != 0)    
                 audioSources[1].Play();
             
-            audioSources[1].loop = true;
+            audioSources[1].loop = false;
         }
+    }
+    public void PlaySoundNotification(int audioClip)
+    {
+
+        if (notificationPlay != null && audioSources != null)
+        {
+            if (notification != 0)
+                audioSources[0].PlayOneShot(notificationPlay[audioClip], 1);
+        }
+    }
+    public void StopVoiceOnExit()
+    {
+        audioSources[1].Stop();
     }
 }
 

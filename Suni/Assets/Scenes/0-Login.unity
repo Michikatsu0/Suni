@@ -3914,7 +3914,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 20fd3c2686f4e204d8a918d917f2d622, type: 3}
   - {fileID: 8300000, guid: e7e3609b364e57644a47ccfb6c635066, type: 3}
   - {fileID: 8300000, guid: d4c7be69d45507d45a8a7359929d2cf6, type: 3}
-  voicePlay: []
+  voicePlay:
+  - {fileID: 8300000, guid: 3c124ef9c197e7c4da715a8a3de8adba, type: 3}
+  notificationPlay:
+  - {fileID: 8300000, guid: 6e88798eff3f1194eb608801d10dda45, type: 3}
   audioSource: {fileID: 985031701}
   audioSources:
   - {fileID: 985031704}
@@ -4761,6 +4764,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIElementsList: []
+  flag: 0
+  internalflag: 0
+  uINotification: {fileID: 0}
 --- !u!1 &1078346543
 GameObject:
   m_ObjectHideFlags: 0
@@ -5350,6 +5356,7 @@ GameObject:
   - component: {fileID: 1287490695}
   - component: {fileID: 1287490696}
   - component: {fileID: 1287490697}
+  - component: {fileID: 1287490698}
   m_Layer: 0
   m_Name: LoginManager
   m_TagString: Untagged
@@ -5384,7 +5391,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aef3c5e4401c2647ae84dd7faef1a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetPlayerPrefs: 0
 --- !u!114 &1287490697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5401,6 +5407,22 @@ MonoBehaviour:
   - {fileID: 1078346543}
   - {fileID: 1946662022}
   - {fileID: 758415428}
+  flag: 0
+  internalflag: 0
+  uINotification: {fileID: 0}
+--- !u!114 &1287490698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287490694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c085c10fe2a453b408317268892fc0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetNewUser: 0
 --- !u!1 &1357135363
 GameObject:
   m_ObjectHideFlags: 0
