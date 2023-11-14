@@ -3567,6 +3567,7 @@ MonoBehaviour:
   - {fileID: 168212037}
   - {fileID: 0}
   flag: 0
+  internalflag: 0
   uINotification: {fileID: 0}
 --- !u!1 &840805188
 GameObject:

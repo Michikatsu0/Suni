@@ -2617,6 +2617,7 @@ MonoBehaviour:
   uIElementsList:
   - {fileID: 231722325}
   flag: 0
+  internalflag: 0
   uINotification: {fileID: 231722325}
 --- !u!1 &1897750106
 GameObject:

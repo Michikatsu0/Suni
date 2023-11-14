@@ -52,9 +52,9 @@ public class SettingsManager : MonoBehaviour
             if (elementIndex == 0)
             {
                 if (rawImages[elementIndex].texture == firstTexture)
-                    PlayerPrefs.SetInt("SetNotification", 1);
+                    PlayerPrefs.SetInt("MuteNotification", 1);
                 else
-                    PlayerPrefs.SetInt("SetNotification", 0);
+                    PlayerPrefs.SetInt("MuteNotification", 0);
             }
             else if (elementIndex == 1)
             {

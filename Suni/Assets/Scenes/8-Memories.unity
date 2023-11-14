@@ -381,6 +381,7 @@ MonoBehaviour:
   uIElementsList:
   - {fileID: 1454749443}
   flag: 0
+  internalflag: 0
   uINotification: {fileID: 1454749443}
 --- !u!1 &146176153
 GameObject:
@@ -853,7 +854,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 4
+  m_AspectRatio: 5
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
@@ -2989,7 +2990,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 4
+  m_AspectRatio: 5
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
