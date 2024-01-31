@@ -37,7 +37,15 @@ public class MenuManager : MonoBehaviour
                     Debug.LogError("Error al eliminar el usuario: " + task.Exception.ToString());
             });
         }
+
         PlayerPrefs.SetInt("SetAudio", 0);
+
+        PlayerPrefs.SetInt("MuteNotification", 1);
+        PlayerPrefs.SetInt("MuteVoice", 1);
+        PlayerPrefs.SetInt("MuteMusic", 1);
+        PlayerPrefs.SetInt("MuteNoise", 1);
+        PlayerPrefs.SetInt("MuteUI", 1);
+
         FirebaseAuth.DefaultInstance.SignOut();
         SceneManager.LoadScene((int)AppScene.LOGIN);
     }

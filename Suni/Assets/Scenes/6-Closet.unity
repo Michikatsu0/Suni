@@ -768,6 +768,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -2190,9 +2191,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIElementsList:
-  - {fileID: 1125911453}
   - {fileID: 661678122}
   flag: 0
+  internalflag: 0
   uINotification: {fileID: 661678122}
 --- !u!1 &1081390793
 GameObject:

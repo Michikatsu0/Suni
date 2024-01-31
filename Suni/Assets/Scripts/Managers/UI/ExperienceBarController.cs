@@ -29,22 +29,22 @@ public class ExperienceBarController : MonoBehaviour
     public TMP_Text currentTextXP;
     public TMP_Text requiredTextXP;
 
-    [SerializeField] private float experienceInterval = 3f;
+    [SerializeField] private float experienceInterval = 5f;
 
     private void Awake()
     {
         Instance = this;
         mDatabase = FirebaseDatabase.DefaultInstance.RootReference;
         mAuth = FirebaseAuth.DefaultInstance;
-        GetUserStats(mAuth);
+        if (SceneManager.GetActiveScene().buildIndex == (int)AppScene.MEDITATION || SceneManager.GetActiveScene().buildIndex == (int)AppScene.HOME)
+            GetUserStats(mAuth);
+        
     }
 
     private void Start()
     {
         if (SceneManager.GetActiveScene().buildIndex == (int)AppScene.MEDITATION)
-        {
             StartCoroutine(GainExperiencePeriodically());
-        }
     }
 
     public void GetUserStats(FirebaseAuth auth)
@@ -118,7 +118,7 @@ public class ExperienceBarController : MonoBehaviour
         return Mathf.RoundToInt(xp);
     }
 
-    private int CalculateRequiredXp()
+    public int CalculateRequiredXp()
     {
         var requiredXp = 0;
         for (var levelCycle = 1; levelCycle <= level; levelCycle++)

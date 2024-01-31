@@ -3437,6 +3437,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -4763,7 +4764,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1c4653fbc7e4848acc18a764f514fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uIElementsList: []
+  uIElementsList:
+  - {fileID: 1078346543}
+  - {fileID: 1946662022}
+  - {fileID: 758415428}
   flag: 0
   internalflag: 0
   uINotification: {fileID: 0}

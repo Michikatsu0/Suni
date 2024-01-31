@@ -20,13 +20,14 @@ public class AuthenticationManager : MonoBehaviour
     private Button restoreButton;
     private Button loginGuest;
 
-    private Coroutine loginCoroutine;
+    private Coroutine signInCoroutine;
+    private Coroutine signInGuest;
     private Coroutine signOutCoroutine;
     private Coroutine getUsernameCoroutine;
     private Coroutine restorePasswordCoroutine;
 
     DatabaseReference database;
-
+    FirebaseAuth auth;
     private void Awake()
     {
         loginButton = GameObject.Find("Button_Login").GetComponent<Button>();
@@ -42,7 +43,8 @@ public class AuthenticationManager : MonoBehaviour
         loginButton.onClick.AddListener(HandleLoginButtonClicked);
         signUpButton.onClick.AddListener(HandleRegisterButtonClicked);
         restoreButton.onClick.AddListener(HandleRestoreButtonClicked);
-        loginGuest.onClick.AddListener(HandleLoginGuestButtonClicked);
+        loginGuest.onClick.AddListener(HandleSignInGuestButtonClicked);
+        auth = FirebaseAuth.DefaultInstance;
         database = FirebaseDatabase.DefaultInstance.RootReference;
         if (FirebaseAuth.DefaultInstance.CurrentUser != null)
         {
@@ -52,25 +54,30 @@ public class AuthenticationManager : MonoBehaviour
         }
     }
 
-    private void HandleLoginGuestButtonClicked()
+    private void HandleSignInGuestButtonClicked()
     {
-        FirebaseAuth.DefaultInstance.SignInAnonymouslyAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.IsFaulted)
-                Debug.Log(task.Exception);
-            else if (task.IsCompleted)
-            {
-                var result = task.Result;
-                PlayerPrefs.SetString("UserID", result.User.UserId);
-                database.Child("users").Child(result.User.UserId).Child("username").SetValueAsync("#" + UnityEngine.Random.Range(1000,9999));
-                database.Child("users").Child(result.User.UserId).Child("level").SetValueAsync(1);
-                database.Child("users").Child(result.User.UserId).Child("coins").SetValueAsync(0);
-                database.Child("users").Child(result.User.UserId).Child("currentXP").SetValueAsync(0);
-                database.Child("users").Child(result.User.UserId).Child("requiredXP").SetValueAsync(79);
-                SceneManagement.Instance.ChangeScene((int)AppScene.REGISTER);
-                PlayerPrefs.Save();
-            }
-        });
+        signInGuest = StartCoroutine(SignInGuest());
+    }
+
+    private IEnumerator SignInGuest()
+    {
+        var auth = FirebaseAuth.DefaultInstance;
+        var signInTask = auth.SignInAnonymouslyAsync();
+
+        yield return new WaitUntil(() => signInTask.IsCompleted);
+
+        if (signInTask.IsFaulted)
+                Debug.Log(signInTask.Exception);
+
+        var result = signInTask.Result;
+        PlayerPrefs.SetString("UserID", result.User.UserId);
+        database.Child("users").Child(result.User.UserId).Child("username").SetValueAsync("#" + UnityEngine.Random.Range(1000, 9999));
+        database.Child("users").Child(result.User.UserId).Child("level").SetValueAsync(1);
+        database.Child("users").Child(result.User.UserId).Child("coins").SetValueAsync(0);
+        database.Child("users").Child(result.User.UserId).Child("currentXP").SetValueAsync(0);
+        database.Child("users").Child(result.User.UserId).Child("requiredXP").SetValueAsync(ExperienceBarController.Instance.CalculateRequiredXp());
+        SceneManagement.Instance.ChangeScene((int)AppScene.REGISTER);
+        PlayerPrefs.Save();
     }
 
     private void HandleRestoreButtonClicked()
@@ -120,7 +127,7 @@ public class AuthenticationManager : MonoBehaviour
         string email = GameObject.Find("InputField_Email").GetComponent<TMP_InputField>().text;
         string password = GameObject.Find("InputField_Password").GetComponent<TMP_InputField>().text;
 
-        loginCoroutine = StartCoroutine(LoginUser(email, password));
+        signInCoroutine = StartCoroutine(LoginUser(email, password));
     }
     
     private IEnumerator LoginUser(string email, string password)
@@ -170,7 +177,7 @@ public class AuthenticationManager : MonoBehaviour
     {
         FirebaseDatabase.DefaultInstance
         .GetReference("users/" + auth.CurrentUser.UserId + "/username")
-        .GetValueAsync().ContinueWithOnMainThread(task =>
+        .GetValueAsync().ContinueWith(task =>
         {
             if (task.IsFaulted)
                 Debug.Log(task.Exception);

@@ -46,6 +46,7 @@ public class LoginManager : MonoBehaviour
 
         PlayerPrefs.Save();
     }
+
     private void Start()
     {
         AudioManager.Instance.musicVolumen = 1f;
@@ -60,6 +61,7 @@ public class LoginManager : MonoBehaviour
     {
         rectTransform.anchoredPosition += rectTransfromVector;
     }
+
     public void SetTutorialOldUser()
     {
         PlayerPrefs.SetInt("SetTutorial", 0);
