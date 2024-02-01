@@ -44,9 +44,6 @@ Cuando se trataba del tema de materialización o prototipado del proyecto, me en
 ![image](https://github.com/Michikatsu0/TallerVI_Proyecto/assets/68073260/5935b9cf-af32-4a51-8e99-b0df82180daf)
 ![image](https://github.com/Michikatsu0/TallerVI_Proyecto/assets/68073260/72d55d2d-62c0-484b-ab06-c73353dc7f47)
 
-![image](https://github.com/Michikatsu0/TallerVI_Proyecto/assets/68073260/243c5433-25b7-4e23-baf5-6b3e3a49aa1a)
-
-
 - Managers: Implementacion de todas las acciones loopeadas o no dentro de cada escena de manera independiente y muy comunicativa al cambiar al guardarlas entre cambios.
 - Videos en secuencia: Se implementa transiciones espeficicas para los videos de la mascota de la empresa y el fondo.
 - Shader Chromakey para videos, Usando ShaderGraph se logra implementar un shader chromakey bastante optimizado para celulares, se logra buenos visiales en el video o textura a implementar el efecto sin perdir detalle.
@@ -54,7 +51,7 @@ Cuando se trataba del tema de materialización o prototipado del proyecto, me en
 ![image](https://github.com/Michikatsu0/TallerVI_Proyecto/assets/68073260/52c6e0d1-370c-4999-9524-8539962896c1)
 ![image](https://github.com/Michikatsu0/TallerVI_Proyecto/assets/68073260/caa8374b-cfd7-405d-9820-af7f31aed235)
 
-![image](https://github.com/Michikatsu0/TallerVI_Proyecto/assets/68073260/d2de1be1-06ee-4d9e-8829-d84b43b5500a)
+![image](https://github.com/Michikatsu0/TallerVI_Proyecto/assets/68073260/243c5433-25b7-4e23-baf5-6b3e3a49aa1a)
 
 - Menu de configuraciones de Notificaciones y Sonidos: Se implementa menu de configuraciones con guardado en Playerprefs y no perder los cambios del usuario, aqui es posible controlar los diferentes canales de audio de la aplicacion desde la voz, musica, ruido del fondo y la UI. 
 
