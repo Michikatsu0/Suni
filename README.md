@@ -39,7 +39,7 @@ Cuando se trataba del tema de materialización o prototipado del proyecto, me en
 ![image](https://github.com/Michikatsu0/TallerVI_Proyecto/assets/68073260/b9a6a13a-eb22-415b-ab1d-240c578437e1)
 
 
-- Mascara de Imagen Y Tutorial: Se implementa una mascara por codigo que invierte el componente nativo de mascara de unity para serusando en el tutorial como efecto de interes para guiar mejor al usuario acerca de la app.
+- Mascara de Imagen Y Tutorial: Se implementa una mascara por codigo que invierte el componente nativo de mascara de unity para ser usando en el tutorial como efecto de interes para guiar mejor al usuario acerca de cómo usar la app.
 
 ![image](https://github.com/Michikatsu0/TallerVI_Proyecto/assets/68073260/5935b9cf-af32-4a51-8e99-b0df82180daf)
 ![image](https://github.com/Michikatsu0/TallerVI_Proyecto/assets/68073260/72d55d2d-62c0-484b-ab06-c73353dc7f47)
